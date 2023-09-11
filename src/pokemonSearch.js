@@ -6,6 +6,19 @@ function PokemonSearch() {
     const [errorMsg, setErrorMsg] = useState('');
     const [loading, setLoading] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
+    const [spriteIndex, setSpriteIndex] = useState(0);
+
+    const availableSprites = [
+        'dream_world','front_default', 'front_shiny', 'back_default', 'back_shiny', 
+    ];
+    const getSpriteUrl = (pokemon, spriteKey) => {
+        switch(spriteKey) {
+            case 'dream_world':
+                return pokemon.sprites.other.dream_world.front_default;
+            default:
+                return pokemon.sprites[spriteKey];
+        }
+    }
 
     const fetchPokemon = async () => {
         setLoading(true);
@@ -48,18 +61,23 @@ function PokemonSearch() {
             {pokemon && (
                 <div className="pokemon-card">
                     <h2>{pokemon.name}</h2>
-                    <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                    <img 
+                        src={getSpriteUrl(pokemon, availableSprites[spriteIndex])}
+                        alt={pokemon.name}
+                        onClick={() => setSpriteIndex((spriteIndex + 1) % availableSprites.length)} 
+                    />
+
+                    
                 </div>
             )}
     
             {pokemon && (
-            <div>
-                <button className="show-details-btn" onClick={() => setShowDetails(!showDetails)}>
-                    {showDetails ? "Ocultar detalles" : "Ver detalles"}
-                </button>
-            </div>
+                <div>
+                    <button className="show-details-btn" onClick={() => setShowDetails(!showDetails)}>
+                        {showDetails ? "Ocultar detalles" : "Ver detalles"}
+                    </button>
+                </div>
             )}
-
     
             {showDetails && (
                 <div className="details-card">
@@ -70,14 +88,14 @@ function PokemonSearch() {
                     <div className="detail">
                         <strong>Altura:</strong> {pokemon.height / 10} m
                     </div>
-                    
+    
                     <h3>Tipo</h3>
                     <div className="detail">
                         {pokemon.types.map((typeObj, index) => (
                             <span key={index}>{typeObj.type.name} </span>
                         ))}
                     </div>
-
+    
                     <h3>Habilidades</h3>
                     {pokemon.abilities.map((abilityObj, index) => (
                         <div className="detail" key={index}>
@@ -86,10 +104,9 @@ function PokemonSearch() {
                     ))}
                 </div>
             )}
-
-
         </div>
     );
+    
     
 }
 
