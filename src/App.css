@@ -6,6 +6,24 @@
   height: 40vmin;
   pointer-events: none;
 }
+h1{
+  color: white;
+}
+
+.background-video {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1; 
+  object-fit: cover; 
+}
+
+.content-overlay {
+  position: relative;
+  z-index: 1; 
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -85,7 +103,7 @@
   margin: 0 auto 15px;
 }
 
-.pokemon-card, .loading-bar, .details-card {
+.pokemon-card, .loading-bar {
   display: block;
   width: 100%;
   max-width: 150px;  
@@ -102,7 +120,7 @@
   margin: 20px auto;
   display: inline-block;
   background-color: #f9f9f9; 
-  width: 80%; 
+  width: 100%; 
 }
 
 .show-details-btn {
@@ -121,6 +139,7 @@
   padding: 8px 12px;
   background-color: #f3f4f6;  
   border-radius: 5px;
+
 }
 
 .details-card .detail strong {

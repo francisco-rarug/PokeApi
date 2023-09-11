@@ -9,8 +9,9 @@ function PokemonSearch() {
     const [spriteIndex, setSpriteIndex] = useState(0);
 
     const availableSprites = [
-        'dream_world','front_default', 'front_shiny', 'back_default', 'back_shiny', 
+        'front_default', 'front_shiny', 'back_default', 'back_shiny', 'dream_world'
     ];
+
     const getSpriteUrl = (pokemon, spriteKey) => {
         switch(spriteKey) {
             case 'dream_world':
@@ -18,7 +19,7 @@ function PokemonSearch() {
             default:
                 return pokemon.sprites[spriteKey];
         }
-    }
+    };
 
     const fetchPokemon = async () => {
         setLoading(true);
@@ -43,7 +44,13 @@ function PokemonSearch() {
     };
 
     return (
-        <div>
+        <div className="content-overlay">
+            <video className="background-video" autoPlay loop muted>
+                <source src=".\pexels-rostislav-uzunov-10613972 (1080p).mp4" type="video/mp4" />
+                Tu navegador no soporta la reproducción de videos.
+            </video>
+            <h1>Búsqueda de Pokémon</h1>
+
             <div>
                 <input 
                     type="number" 
@@ -66,8 +73,12 @@ function PokemonSearch() {
                         alt={pokemon.name}
                         onClick={() => setSpriteIndex((spriteIndex + 1) % availableSprites.length)} 
                     />
-
-                    
+                    <div className="stat">
+                        <strong>Ataque:</strong> {pokemon.stats.find(stat => stat.stat.name === "attack").base_stat}
+                    </div>
+                    <div className="stat">
+                        <strong>Defensa:</strong> {pokemon.stats.find(stat => stat.stat.name === "defense").base_stat}
+                    </div>
                 </div>
             )}
     
@@ -106,8 +117,6 @@ function PokemonSearch() {
             )}
         </div>
     );
-    
-    
 }
 
 export default PokemonSearch;
