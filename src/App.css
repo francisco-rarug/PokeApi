@@ -67,3 +67,71 @@
   }
 }
 
+/* Estilos existentes para la tarjeta principal del Pokémon */
+.pokemon-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  display: inline-block;
+  background-color: #fff;
+}
+
+.pokemon-card img {
+  width: 150px;
+  height: 150px;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+.pokemon-card, .loading-bar, .details-card {
+  display: block;
+  width: 100%;
+  max-width: 150px;  
+  margin: 20px auto;
+   
+}
+
+
+.details-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  display: inline-block;
+  background-color: #f9f9f9; 
+  width: 80%; 
+}
+
+.show-details-btn {
+  margin-top: 20px;
+  padding: 8px 15px;
+  background-color: #262ca2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.details-card .detail {
+  margin: 10px 0;
+  padding: 8px 12px;
+  background-color: #f3f4f6;  
+  border-radius: 5px;
+}
+
+.details-card .detail strong {
+  margin-right: 5px;
+}
+
+.show-details-btn:hover {
+  background-color: #007BFF;
+}
+
+
+.pokemon-card h2 {
+  text-transform: capitalize;  
+}
