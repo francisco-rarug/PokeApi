@@ -30,4 +30,4 @@ Una vez que hayas completado los pasos de instalación, puedes ejecutar la aplic
 **npm start**
 
 Esto iniciará la aplicación y, si todo funciona correctamente, deberías ver un mensaje en la consola que indica que la aplicación está corriendo y en qué puerto.
-# PokeApi
+

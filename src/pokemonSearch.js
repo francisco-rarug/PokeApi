@@ -4,8 +4,11 @@ function PokemonSearch() {
     const [pokeId, setPokeId] = useState('');
     const [pokemon, setPokemon] = useState(null);
     const [errorMsg, setErrorMsg] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const fetchPokemon = async () => {
+        setLoading(true); 
+
         try {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeId}`);
 
@@ -19,6 +22,8 @@ function PokemonSearch() {
         } catch (error) {
             setPokemon(null);
             setErrorMsg(error.message);
+        } finally {
+            setLoading(false); 
         }
     };
 
@@ -31,6 +36,10 @@ function PokemonSearch() {
                 onChange={(e) => setPokeId(e.target.value)}
             />
             <button onClick={fetchPokemon}>Buscar</button>
+
+            {loading && <div className="loading-bar"></div>}
+
+
             {errorMsg && <p className="error">{errorMsg}</p>}
             {pokemon && (
                 <div>
@@ -43,4 +52,5 @@ function PokemonSearch() {
 }
 
 export default PokemonSearch;
+
 
